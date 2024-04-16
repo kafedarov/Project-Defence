@@ -114,6 +114,7 @@ namespace BookLibrary.Controllers
                 bookVM.ImagePath = editBook.ImagePath;
                 bookVM.Genre = editBook.Genre;
                 bookVM.GenreId = editBook.GenreId;
+                bookVM.Price = editBook.Price;
             }
 
             IEnumerable<string> genreNames = _bookDb.Genres.Select(g => g.Name).Distinct();

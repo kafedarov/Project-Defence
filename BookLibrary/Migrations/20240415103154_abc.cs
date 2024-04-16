@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace BookLibrary.Migrations
+namespace BookShop.Migrations
 {
     public partial class abc : Migration
     {
@@ -126,8 +126,8 @@ namespace BookLibrary.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -171,8 +171,8 @@ namespace BookLibrary.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -215,7 +215,8 @@ namespace BookLibrary.Migrations
                     Publisher = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     ImagePath = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     DateAdded = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    GenreId = table.Column<int>(type: "int", nullable: false)
+                    GenreId = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -256,6 +257,20 @@ namespace BookLibrary.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "2", "2", "admin", "admin" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { "1", 0, "5e17894e-8fd1-45bf-87e7-7537537ef948", "user@abc.com", true, "user", "Ofoedu", false, null, null, "user@abc.com", "AQAAAAEAACcQAAAAEIl9wPlhCUe4VWmQXzDIIzpmek8yFumcPWwxk7PBRk2OXrGHNV97eooe/LGdttqn5g==", null, false, "5a27b8aa-8170-499b-9ac7-5d8a515613d2", false, "user@abc.com" },
+                    { "2", 0, "ba31ea12-c8e2-45bd-a768-75655265ea23", "admin@abc.com", true, "Admin", "Ofoedu", false, null, null, "admin@abc.com", "AQAAAAEAACcQAAAAED1a71jj1Y5P6N3dNwiv0/GnN90Lv2sXSfCTTGoKPiA3X57C4Q/JJ84tFrx7usH5vA==", null, false, "0e15fcaf-f8ab-4eb9-aef5-858c4df6074e", false, "admin@abc.com" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Genres",
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
@@ -277,33 +292,38 @@ namespace BookLibrary.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "2", "2" });
+
+            migrationBuilder.InsertData(
                 table: "Books",
-                columns: new[] { "Id", "Author", "DateAdded", "GenreId", "ImagePath", "Publisher", "Title" },
+                columns: new[] { "Id", "Author", "DateAdded", "GenreId", "ImagePath", "Price", "Publisher", "Title" },
                 values: new object[,]
                 {
-                    { 1, "Pierce Brown", new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "RedRising.jpg", "Del Rey", "Red Rising" },
-                    { 2, "Stephen King", new DateTime(2023, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "PetSematary.jpg", "Gallery", "Pet Sematary" },
-                    { 3, "Frank Herbert", new DateTime(2023, 11, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "dune.jpg", "Ace", "Dune" },
-                    { 4, "Jon Duckett", new DateTime(2023, 10, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "HtmlCss.jpg", "Wiley", "HTML & CSS: Design and Build Websites" },
-                    { 5, "Eric Matthes", new DateTime(2023, 10, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "PythonCrashCourse.jpg", "No Starch Press", "Python Crash Course: A Hands On, Project-Based Introduction to Programming" },
-                    { 6, "Erik Larson", new DateTime(2023, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "DevilWhiteCity.jpg", "Vintage", "The Devil In the White City: Murder, Magic, and Madness at the Fair That Changed America" },
-                    { 8, "Pierce Brown", new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "GoldenSon.jpg", "Del Rey", "Golden Son" },
-                    { 9, "Pierce Brown", new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "MorningSon.jpg", "Del Rey", "Morning Star" },
-                    { 10, "Shara Henric", new DateTime(2023, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, "aa-jacket-medium.jpg", "Vintage", "The Princess while save you" },
-                    { 11, "Joe Brown", new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, "aa-matthew.jpg", "Del Rey", "MATTHEW QUIRK" },
-                    { 12, "Pierce Brown", new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, "aa-twostorm.jpg", "Del Rey", "TWO STORM WOOD" },
-                    { 13, "Shara Henric", new DateTime(2023, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "F1_BOOK.jpg", "Vintage", "THE CITY OF BRASS" },
-                    { 14, "Pierce Brown", new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "F2_BOOK.jpg", "Del Rey", "NIGHT CIRCUS" },
-                    { 15, "Stephen King", new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "F3_BOOK.jpg", "Del Rey", "KAZUO ISHIGURO" },
-                    { 16, "JACKIE AND MARIA", new DateTime(2023, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 7, "H1_BOOK.jpg", "Vintage", "THE CITY OF BRASS" },
-                    { 17, "DUST CHILD", new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 7, "H2_BOOK.jpg", "Del Rey", "NIGHT CIRCUS" },
-                    { 18, "PAM JENOFF", new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 7, "H3_BOOK.jpg", "Del Rey", "KAZUO ISHIGURO" },
-                    { 19, "JACKIE AND MARIA", new DateTime(2023, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "HO1_BOOK.jpg", "Vintage", "ALL THE WHITE SPACES" },
-                    { 20, "DUST CHILD", new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "HO2_BOOK.jpg", "Del Rey", "THOMAS OLDE HEUVELT" },
-                    { 21, "PAM JENOFF", new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "HO3_BOOK.jpg", "Del Rey", "HIDDEN PICTURES" },
-                    { 22, "JACKIE AND MARIA", new DateTime(2023, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 9, "HO1_BOOK.jpg", "Vintage", "LIVING & DYING IN AMERICA" },
-                    { 23, "DUST CHILD", new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 9, "HO2_BOOK.jpg", "Del Rey", "DUCKS" },
-                    { 24, "PAM JENOFF", new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 9, "HO3_BOOK.jpg", "Del Rey", "CURLFRRIENDS NEW IN TOWN" }
+                    { 1, "Pierce Brown", new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "RedRising.jpg", 100, "Del Rey", "Red Rising" },
+                    { 2, "Stephen King", new DateTime(2023, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "PetSematary.jpg", 800, "Gallery", "Pet Sematary" },
+                    { 3, "Frank Herbert", new DateTime(2023, 11, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "dune.jpg", 901, "Ace", "Dune" },
+                    { 4, "Jon Duckett", new DateTime(2023, 10, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "HtmlCss.jpg", 78, "Wiley", "HTML & CSS: Design and Build Websites" },
+                    { 5, "Eric Matthes", new DateTime(2023, 10, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "PythonCrashCourse.jpg", 72, "No Starch Press", "Python Crash Course: A Hands On, Project-Based Introduction to Programming" },
+                    { 6, "Erik Larson", new DateTime(2023, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "DevilWhiteCity.jpg", 56, "Vintage", "The Devil In the White City: Murder, Magic, and Madness at the Fair That Changed America" },
+                    { 8, "Pierce Brown", new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "GoldenSon.jpg", 55, "Del Rey", "Golden Son" },
+                    { 9, "Pierce Brown", new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "MorningSon.jpg", 73, "Del Rey", "Morning Star" },
+                    { 10, "Shara Henric", new DateTime(2023, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, "aa-jacket-medium.jpg", 40, "Vintage", "The Princess while save you" },
+                    { 11, "Joe Brown", new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, "aa-matthew.jpg", 79, "Del Rey", "MATTHEW QUIRK" },
+                    { 12, "Pierce Brown", new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, "aa-twostorm.jpg", 45, "Del Rey", "TWO STORM WOOD" },
+                    { 13, "Shara Henric", new DateTime(2023, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "F1_BOOK.jpg", 99, "Vintage", "THE CITY OF BRASS" },
+                    { 14, "Pierce Brown", new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "F2_BOOK.jpg", 100, "Del Rey", "NIGHT CIRCUS" },
+                    { 15, "Stephen King", new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "F3_BOOK.jpg", 120, "Del Rey", "KAZUO ISHIGURO" },
+                    { 16, "JACKIE AND MARIA", new DateTime(2023, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 7, "H1_BOOK.jpg", 102, "Vintage", "THE CITY OF BRASS" },
+                    { 17, "DUST CHILD", new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 7, "H2_BOOK.jpg", 48, "Del Rey", "NIGHT CIRCUS" },
+                    { 18, "PAM JENOFF", new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 7, "H3_BOOK.jpg", 90, "Del Rey", "KAZUO ISHIGURO" },
+                    { 19, "JACKIE AND MARIA", new DateTime(2023, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "HO1_BOOK.jpg", 67, "Vintage", "ALL THE WHITE SPACES" },
+                    { 20, "DUST CHILD", new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "HO2_BOOK.jpg", 56, "Del Rey", "THOMAS OLDE HEUVELT" },
+                    { 21, "PAM JENOFF", new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "HO3_BOOK.jpg", 53, "Del Rey", "HIDDEN PICTURES" },
+                    { 22, "JACKIE AND MARIA", new DateTime(2023, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 9, "HO1_BOOK.jpg", 55, "Vintage", "LIVING & DYING IN AMERICA" },
+                    { 23, "DUST CHILD", new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 9, "HO2_BOOK.jpg", 99, "Del Rey", "DUCKS" },
+                    { 24, "PAM JENOFF", new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 9, "HO3_BOOK.jpg", 88, "Del Rey", "CURLFRRIENDS NEW IN TOWN" }
                 });
 
             migrationBuilder.CreateIndex(

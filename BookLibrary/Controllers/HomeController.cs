@@ -6,16 +6,17 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
-namespace BookLibrary.Controllers
+namespace BookShop.Controllers
 {
 
     public class HomeController : Controller
     {
         BookLibraryDb _bookDb;
-
+      
         public HomeController(BookLibraryDb bookLibrary)
         {
             _bookDb = bookLibrary;
+        
         }
         public IActionResult Aboutus()
         {
@@ -50,8 +51,9 @@ namespace BookLibrary.Controllers
 		}
 
 
+  
 
-		[HttpPost]
+        [HttpPost]
 
         public IActionResult contactusPOST(Contactus model)
         {
@@ -59,12 +61,12 @@ namespace BookLibrary.Controllers
             _bookDb.SaveChanges();
             ViewBag.status = "Successfully submitted!";
             Contactus cantact=new Contactus();
-            return View("contactus", cantact);  
+            return View("contact", cantact);  
         }
 
         public IActionResult Contactus()
         {
-            return View();
+            return View("Contact");
         }
 
 

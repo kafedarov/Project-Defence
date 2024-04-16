@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace BookLibrary.Migrations
+namespace BookShop.Migrations
 {
     [DbContext(typeof(BookLibraryDb))]
     partial class BookLibraryDbModelSnapshot : ModelSnapshot
@@ -91,6 +91,42 @@ namespace BookLibrary.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "ba31ea12-c8e2-45bd-a768-75655265ea23",
+                            Email = "admin@abc.com",
+                            EmailConfirmed = true,
+                            FirstName = "Admin",
+                            LastName = "Ofoedu",
+                            LockoutEnabled = false,
+                            NormalizedUserName = "admin@abc.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAED1a71jj1Y5P6N3dNwiv0/GnN90Lv2sXSfCTTGoKPiA3X57C4Q/JJ84tFrx7usH5vA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "0e15fcaf-f8ab-4eb9-aef5-858c4df6074e",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@abc.com"
+                        },
+                        new
+                        {
+                            Id = "1",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "5e17894e-8fd1-45bf-87e7-7537537ef948",
+                            Email = "user@abc.com",
+                            EmailConfirmed = true,
+                            FirstName = "user",
+                            LastName = "Ofoedu",
+                            LockoutEnabled = false,
+                            NormalizedUserName = "user@abc.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIl9wPlhCUe4VWmQXzDIIzpmek8yFumcPWwxk7PBRk2OXrGHNV97eooe/LGdttqn5g==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "5a27b8aa-8170-499b-9ac7-5d8a515613d2",
+                            TwoFactorEnabled = false,
+                            UserName = "user@abc.com"
+                        });
                 });
 
             modelBuilder.Entity("BookLibrary.Models.Book", b =>
@@ -116,6 +152,9 @@ namespace BookLibrary.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
                     b.Property<string>("Publisher")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -140,6 +179,7 @@ namespace BookLibrary.Migrations
                             DateAdded = new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GenreId = 1,
                             ImagePath = "RedRising.jpg",
+                            Price = 100,
                             Publisher = "Del Rey",
                             Title = "Red Rising"
                         },
@@ -150,6 +190,7 @@ namespace BookLibrary.Migrations
                             DateAdded = new DateTime(2023, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GenreId = 2,
                             ImagePath = "PetSematary.jpg",
+                            Price = 800,
                             Publisher = "Gallery",
                             Title = "Pet Sematary"
                         },
@@ -160,6 +201,7 @@ namespace BookLibrary.Migrations
                             DateAdded = new DateTime(2023, 11, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GenreId = 1,
                             ImagePath = "dune.jpg",
+                            Price = 901,
                             Publisher = "Ace",
                             Title = "Dune"
                         },
@@ -170,6 +212,7 @@ namespace BookLibrary.Migrations
                             DateAdded = new DateTime(2023, 10, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GenreId = 2,
                             ImagePath = "HtmlCss.jpg",
+                            Price = 78,
                             Publisher = "Wiley",
                             Title = "HTML & CSS: Design and Build Websites"
                         },
@@ -180,6 +223,7 @@ namespace BookLibrary.Migrations
                             DateAdded = new DateTime(2023, 10, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GenreId = 3,
                             ImagePath = "PythonCrashCourse.jpg",
+                            Price = 72,
                             Publisher = "No Starch Press",
                             Title = "Python Crash Course: A Hands On, Project-Based Introduction to Programming"
                         },
@@ -190,6 +234,7 @@ namespace BookLibrary.Migrations
                             DateAdded = new DateTime(2023, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GenreId = 3,
                             ImagePath = "DevilWhiteCity.jpg",
+                            Price = 56,
                             Publisher = "Vintage",
                             Title = "The Devil In the White City: Murder, Magic, and Madness at the Fair That Changed America"
                         },
@@ -200,6 +245,7 @@ namespace BookLibrary.Migrations
                             DateAdded = new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GenreId = 1,
                             ImagePath = "GoldenSon.jpg",
+                            Price = 55,
                             Publisher = "Del Rey",
                             Title = "Golden Son"
                         },
@@ -210,6 +256,7 @@ namespace BookLibrary.Migrations
                             DateAdded = new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GenreId = 3,
                             ImagePath = "MorningSon.jpg",
+                            Price = 73,
                             Publisher = "Del Rey",
                             Title = "Morning Star"
                         },
@@ -220,6 +267,7 @@ namespace BookLibrary.Migrations
                             DateAdded = new DateTime(2023, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GenreId = 6,
                             ImagePath = "aa-jacket-medium.jpg",
+                            Price = 40,
                             Publisher = "Vintage",
                             Title = "The Princess while save you"
                         },
@@ -230,6 +278,7 @@ namespace BookLibrary.Migrations
                             DateAdded = new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GenreId = 6,
                             ImagePath = "aa-matthew.jpg",
+                            Price = 79,
                             Publisher = "Del Rey",
                             Title = "MATTHEW QUIRK"
                         },
@@ -240,6 +289,7 @@ namespace BookLibrary.Migrations
                             DateAdded = new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GenreId = 6,
                             ImagePath = "aa-twostorm.jpg",
+                            Price = 45,
                             Publisher = "Del Rey",
                             Title = "TWO STORM WOOD"
                         },
@@ -250,6 +300,7 @@ namespace BookLibrary.Migrations
                             DateAdded = new DateTime(2023, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GenreId = 5,
                             ImagePath = "F1_BOOK.jpg",
+                            Price = 99,
                             Publisher = "Vintage",
                             Title = "THE CITY OF BRASS"
                         },
@@ -260,6 +311,7 @@ namespace BookLibrary.Migrations
                             DateAdded = new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GenreId = 5,
                             ImagePath = "F2_BOOK.jpg",
+                            Price = 100,
                             Publisher = "Del Rey",
                             Title = "NIGHT CIRCUS"
                         },
@@ -270,6 +322,7 @@ namespace BookLibrary.Migrations
                             DateAdded = new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GenreId = 5,
                             ImagePath = "F3_BOOK.jpg",
+                            Price = 120,
                             Publisher = "Del Rey",
                             Title = "KAZUO ISHIGURO"
                         },
@@ -280,6 +333,7 @@ namespace BookLibrary.Migrations
                             DateAdded = new DateTime(2023, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GenreId = 7,
                             ImagePath = "H1_BOOK.jpg",
+                            Price = 102,
                             Publisher = "Vintage",
                             Title = "THE CITY OF BRASS"
                         },
@@ -290,6 +344,7 @@ namespace BookLibrary.Migrations
                             DateAdded = new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GenreId = 7,
                             ImagePath = "H2_BOOK.jpg",
+                            Price = 48,
                             Publisher = "Del Rey",
                             Title = "NIGHT CIRCUS"
                         },
@@ -300,6 +355,7 @@ namespace BookLibrary.Migrations
                             DateAdded = new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GenreId = 7,
                             ImagePath = "H3_BOOK.jpg",
+                            Price = 90,
                             Publisher = "Del Rey",
                             Title = "KAZUO ISHIGURO"
                         },
@@ -310,6 +366,7 @@ namespace BookLibrary.Migrations
                             DateAdded = new DateTime(2023, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GenreId = 2,
                             ImagePath = "HO1_BOOK.jpg",
+                            Price = 67,
                             Publisher = "Vintage",
                             Title = "ALL THE WHITE SPACES"
                         },
@@ -320,6 +377,7 @@ namespace BookLibrary.Migrations
                             DateAdded = new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GenreId = 2,
                             ImagePath = "HO2_BOOK.jpg",
+                            Price = 56,
                             Publisher = "Del Rey",
                             Title = "THOMAS OLDE HEUVELT"
                         },
@@ -330,6 +388,7 @@ namespace BookLibrary.Migrations
                             DateAdded = new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GenreId = 2,
                             ImagePath = "HO3_BOOK.jpg",
+                            Price = 53,
                             Publisher = "Del Rey",
                             Title = "HIDDEN PICTURES"
                         },
@@ -340,6 +399,7 @@ namespace BookLibrary.Migrations
                             DateAdded = new DateTime(2023, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GenreId = 9,
                             ImagePath = "HO1_BOOK.jpg",
+                            Price = 55,
                             Publisher = "Vintage",
                             Title = "LIVING & DYING IN AMERICA"
                         },
@@ -350,6 +410,7 @@ namespace BookLibrary.Migrations
                             DateAdded = new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GenreId = 9,
                             ImagePath = "HO2_BOOK.jpg",
+                            Price = 99,
                             Publisher = "Del Rey",
                             Title = "DUCKS"
                         },
@@ -360,6 +421,7 @@ namespace BookLibrary.Migrations
                             DateAdded = new DateTime(2023, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             GenreId = 9,
                             ImagePath = "HO3_BOOK.jpg",
+                            Price = 88,
                             Publisher = "Del Rey",
                             Title = "CURLFRRIENDS NEW IN TOWN"
                         });
@@ -552,6 +614,15 @@ namespace BookLibrary.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "2",
+                            ConcurrencyStamp = "2",
+                            Name = "admin",
+                            NormalizedName = "admin"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -607,12 +678,10 @@ namespace BookLibrary.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -641,6 +710,13 @@ namespace BookLibrary.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "2",
+                            RoleId = "2"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -649,12 +725,10 @@ namespace BookLibrary.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");

@@ -1,0 +1,144 @@
+﻿
+@{
+    Layout = "/Views/Shared/_layout.cshtml";
+}
+@model Contactus 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        html1 {
+            height: 100%
+        }
+
+        body1 {
+            height: 100%;
+            margin: 0;
+            padding: 0
+        }
+
+        #map_canvas {
+            height: 100%
+        }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        input[type=email], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        input[type=submit] {
+            background-color: #04AA6D;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            input[type=submit]:hover {
+                background-color: #45a049;
+            }
+
+        .container1 {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h3>Contact Form</h3>
+
+    <div class="container1">
+        <form asp-action="contactusPOST">
+            <label for="fname">First Name</label>
+            <input type="text" asp-for="FirstName" placeholder="Your name..">
+
+            <label for="lname">Last Name</label>
+            <input type="text" asp-for="LastName" placeholder="Your last name..">
+
+            <label for="email">Email</label>
+            <input type="email" asp-for="email" placeholder="Email...">
+
+         
+            <textarea asp-for="Message" placeholder="Message.." style="height:200px"></textarea>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+</body>
+@* ****************************** *@
+<script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6v5-2uaq_wusHDktM9ILcqIrlPtnZgEk&sensor=false">
+</script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places">
+</script>
+<script type="text/javascript">
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success);
+    } else {
+        alert("Geo Location is not supported on your current browser!");
+    }
+    function success(position) {
+        var lat = position.coords.latitude;
+        var long = position.coords.longitude;
+        var city = position.coords.locality;
+        var myLatlng = new google.maps.LatLng(lat, long);
+        var myOptions = {
+            center: myLatlng,
+            zoom: 12,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            title: "lat: " + lat + " long: " + long
+        });
+        marker.setMap(map);
+        var infowindow = new google.maps.InfoWindow({ content: "<b>User Address</b><br/> Latitude:" + lat + "<br /> Longitude:" + long + "" });
+        infowindow.open(map, marker);
+    }
+</script>
+<div class="row text-center bg-white">
+
+   <div class="col-4"> </div>
+  <div class="col-8">
+      
+       
+   
+
+        <form id="form1" runat="server">
+            <div id="map_canvas" style="width: 500px; height: 400px"></div>
+        </form>
+    </div>
+</div>
+</html>
+
+

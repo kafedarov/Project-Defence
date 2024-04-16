@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using BookLibrary.Data;
 using BookLibrary.Models;
 using BookLibrary.Services;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,9 +19,8 @@ builder.Services.AddDbContext<BookLibraryDb>(options =>
 //builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = false)
 //    .AddEntityFrameworkStores<BookLibraryDb>();
 
-
 builder.Services.AddIdentity<AppUser, IdentityRole>()
-.AddDefaultTokenProviders()
+
 .AddDefaultUI()
 .AddEntityFrameworkStores<BookLibraryDb>();
 
