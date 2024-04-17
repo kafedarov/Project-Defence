@@ -4,30 +4,30 @@
 <br />
 <br />
 <div class="row">
-    <div class="col-4"></div>
-    <div class="col-4">
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title text-danger">Are you sure you want to delete?</h5>
-        <p class="card-text- text-danger"><em>Note: This is permanent</em></p>
-    </div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item"><b>Book:</b> @Model.Title </li>
-        <li class="list-group-item"><b>Author:</b> @Model.Author </li>
-    </ul>
-    <div class="card-body">
-        <div class="row">
-            <div class="col">
-        <a asp-action="All" class="btn btn-outline-primary">Back to Library</a>
-        </div>
-        <div class="col">
-        <form asp-action="Delete" method="post">
-            <input asp-for="Id" hidden />
-            <input class="btn btn-danger" type="submit" value="Delete this Book" />
-        </form>
-                    </div>
-                </div>
-    </div>
-</div>
-</div>
+	<div class="col-4"></div>
+	<div class="col-4">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title text-danger">Are you sure you want to delete?</h5>
+				<p class="card-text- text-danger"><em>Note: This is permanent</em></p>
+			</div>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item"><b>Book:</b> @Model.Title </li>
+				<li class="list-group-item"><b>Author:</b> @Model.Author </li>
+			</ul>
+			<div class="card-body">
+				<div class="row">
+					<div class="col">
+						<a asp-action="All" class="btn btn-outline-primary">Back to Library</a>
+					</div>
+					<div class="col">
+						<form asp-action="Delete" method="post">
+							<input asp-for="Id" hidden />
+							<input class="btn btn-danger" type="submit" value="Delete this Book" />
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

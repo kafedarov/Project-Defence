@@ -5,11 +5,15 @@
 }
 
 
-
+<style>
+    .form-floating {
+        margin-bottom: 20px;
+    }
+</style>
 <div class="row">
     <div class="col-2"></div>
     <div class="col-4">
-        <h1>@ViewData["Title"]</h1>
+        <h1 style="color:white;">@ViewData["Title"]</h>
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
   
             <hr />

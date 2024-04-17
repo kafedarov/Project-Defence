@@ -85,5 +85,16 @@ namespace BookLibrary.Controllers
             _cartServ.UpdateItem(user, itemId, quantity);
             return RedirectToAction("Cart");
         }
+
+        public IActionResult Pay()
+        {
+            var paymentModel = new PaymentModel
+            {
+                Amount = "10.00", // Sample amount
+                Currency = "USD" 
+            };
+
+            return View(paymentModel);
+        }
     }
 }

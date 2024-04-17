@@ -33,7 +33,7 @@
             width: 100%;
             padding: 12px;
             border: 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 10px;
             box-sizing: border-box;
             margin-top: 6px;
             margin-bottom: 16px;
@@ -44,7 +44,7 @@
             width: 100%;
             padding: 12px;
             border: 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 10px;
             box-sizing: border-box;
             margin-top: 6px;
             margin-bottom: 16px;
@@ -54,10 +54,12 @@
         input[type=submit] {
             background-color: #04AA6D;
             color: white;
-            padding: 12px 20px;
+            padding: 15px 40px;
             border: none;
-            border-radius: 4px;
+            border-radius: 10px;
             cursor: pointer;
+            margin: auto;
+            display: block;
         }
 
             input[type=submit]:hover {
@@ -65,17 +67,20 @@
             }
 
         .container1 {
-            border-radius: 5px;
+            border-radius: 50px;
             background-color: #f2f2f2;
             padding: 20px;
+            width: 50%;
+            position: center;
+            margin: auto;
         }
     </style>
 </head>
 <body>
 
-    <h3>Contact Form</h3>
+    <div class="container1 mb-5">
+        <h3>Contact Form</h3>
 
-    <div class="container1">
         <form asp-action="contactusPOST">
             <label for="fname">First Name</label>
             <input type="text" asp-for="FirstName" placeholder="Your name..">
@@ -107,13 +112,13 @@
         alert("Geo Location is not supported on your current browser!");
     }
     function success(position) {
-        var lat = position.coords.latitude;
-        var long = position.coords.longitude;
+        var lat = 45.484205256668886; 
+        var long = 10.061161680705732;
         var city = position.coords.locality;
         var myLatlng = new google.maps.LatLng(lat, long);
         var myOptions = {
             center: myLatlng,
-            zoom: 12,
+            zoom: 14,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
@@ -122,23 +127,15 @@
             title: "lat: " + lat + " long: " + long
         });
         marker.setMap(map);
-        var infowindow = new google.maps.InfoWindow({ content: "<b>User Address</b><br/> Latitude:" + lat + "<br /> Longitude:" + long + "" });
+        var infowindow = new google.maps.InfoWindow({ content: "<b>ABC BOOK SHOP</b><br/> Latitude:" + lat + "<br /> Longitude:" + long + "" });
         infowindow.open(map, marker);
     }
 </script>
-<div class="row text-center bg-white">
 
-   <div class="col-4"> </div>
-  <div class="col-8">
-      
-       
+<form id="form1" runat="server">
+    <div id="map_canvas" style="width: 100%; height: 500px"></div>
+</form>
    
-
-        <form id="form1" runat="server">
-            <div id="map_canvas" style="width: 500px; height: 400px"></div>
-        </form>
-    </div>
-</div>
 </html>
 
 

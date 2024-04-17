@@ -12,7 +12,7 @@ var connectionString = builder.Configuration.GetConnectionString("BookLibraryDBC
 
 builder.Services.AddDbContext<BookLibraryDb>(options =>
 {
-    options.UseSqlServer(connectionString).EnableSensitiveDataLogging();
+	options.UseSqlServer(connectionString).EnableSensitiveDataLogging();
 });
 
 //Tells .Net that we will use the BookLibraryDb for users to LogIn
@@ -20,9 +20,9 @@ builder.Services.AddDbContext<BookLibraryDb>(options =>
 //    .AddEntityFrameworkStores<BookLibraryDb>();
 
 builder.Services.AddIdentity<AppUser, IdentityRole>()
-
-.AddDefaultUI()
-.AddEntityFrameworkStores<BookLibraryDb>();
+	.AddDefaultTokenProviders()
+	.AddDefaultUI()
+	.AddEntityFrameworkStores<BookLibraryDb>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -36,9 +36,9 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+	app.UseExceptionHandler("/Home/Error");
+	// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+	app.UseHsts();
 }
 
 app.UseHttpsRedirection();
@@ -50,8 +50,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+	name: "default",
+	pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 
 app.Run();

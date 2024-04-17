@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookShop.Migrations
 {
     [DbContext(typeof(BookLibraryDb))]
-    [Migration("20240415103154_abc")]
-    partial class abc
+    [Migration("20240417194025_add-migration BookShop")]
+    partial class addmigrationBookShop
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -99,16 +99,16 @@ namespace BookShop.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ba31ea12-c8e2-45bd-a768-75655265ea23",
+                            ConcurrencyStamp = "c229f30e-2fc0-48ab-aa25-c55857b23915",
                             Email = "admin@abc.com",
                             EmailConfirmed = true,
                             FirstName = "Admin",
                             LastName = "Ofoedu",
                             LockoutEnabled = false,
                             NormalizedUserName = "admin@abc.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAED1a71jj1Y5P6N3dNwiv0/GnN90Lv2sXSfCTTGoKPiA3X57C4Q/JJ84tFrx7usH5vA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIELNVZNBZSN4ah9ZfxMGbbnau1ID8iwG25uDEs0OM0m7kwvM4g5B/Zk3+IDJcNcRg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0e15fcaf-f8ab-4eb9-aef5-858c4df6074e",
+                            SecurityStamp = "80305a0e-40b2-4feb-a84e-2c4e8df04d98",
                             TwoFactorEnabled = false,
                             UserName = "admin@abc.com"
                         },
@@ -116,16 +116,16 @@ namespace BookShop.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5e17894e-8fd1-45bf-87e7-7537537ef948",
+                            ConcurrencyStamp = "157ad2f1-3db0-47c5-ba7f-1468e8840acf",
                             Email = "user@abc.com",
                             EmailConfirmed = true,
                             FirstName = "user",
                             LastName = "Ofoedu",
                             LockoutEnabled = false,
                             NormalizedUserName = "user@abc.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIl9wPlhCUe4VWmQXzDIIzpmek8yFumcPWwxk7PBRk2OXrGHNV97eooe/LGdttqn5g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMNdrXZuEjTSSwD9CY5INzmIMDnfs0K4HF4VbdRi029tPTqacGE4mgdhHVbE2Tsw6A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5a27b8aa-8170-499b-9ac7-5d8a515613d2",
+                            SecurityStamp = "893f7d92-829a-43fb-b3a6-67b88832abf2",
                             TwoFactorEnabled = false,
                             UserName = "user@abc.com"
                         });

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BookShop.Migrations
 {
-    public partial class abc : Migration
+    public partial class BookShop : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -266,8 +266,8 @@ namespace BookShop.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "1", 0, "5e17894e-8fd1-45bf-87e7-7537537ef948", "user@abc.com", true, "user", "Ofoedu", false, null, null, "user@abc.com", "AQAAAAEAACcQAAAAEIl9wPlhCUe4VWmQXzDIIzpmek8yFumcPWwxk7PBRk2OXrGHNV97eooe/LGdttqn5g==", null, false, "5a27b8aa-8170-499b-9ac7-5d8a515613d2", false, "user@abc.com" },
-                    { "2", 0, "ba31ea12-c8e2-45bd-a768-75655265ea23", "admin@abc.com", true, "Admin", "Ofoedu", false, null, null, "admin@abc.com", "AQAAAAEAACcQAAAAED1a71jj1Y5P6N3dNwiv0/GnN90Lv2sXSfCTTGoKPiA3X57C4Q/JJ84tFrx7usH5vA==", null, false, "0e15fcaf-f8ab-4eb9-aef5-858c4df6074e", false, "admin@abc.com" }
+                    { "1", 0, "01edcf16-14f1-47b6-82b8-a28372f46e20", "user@abc.com", true, "user", "Ofoedu", false, null, null, "user@abc.com", "AQAAAAEAACcQAAAAEPNrayx3+RFo99qEopWMp+WgF6m5ejqK8YK84n8+f0bblQrvzwOz0abRvjsuFYcKVg==", null, false, "95678224-d54a-4c48-b4a9-e86afcd6707a", false, "user@abc.com" },
+                    { "2", 0, "9f9d5f99-1edb-4e5c-ae07-9d3cdbcd78af", "admin@abc.com", true, "Admin", "Ofoedu", false, null, null, "admin@abc.com", "AQAAAAEAACcQAAAAEH0yUNL66VPcuURF/zj0pb/w8ZYT3+6aepH13r0wYzEBM3S8EC8TEO4ZAzk+uc7xog==", null, false, "7e3701a4-5b27-4c84-88cb-dcfec76eba0d", false, "admin@abc.com" }
                 });
 
             migrationBuilder.InsertData(
