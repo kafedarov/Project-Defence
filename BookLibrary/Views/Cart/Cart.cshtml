@@ -1,0 +1,88 @@
+﻿@model List<CartItem>
+@{
+	float proc = 0;
+}
+<div class="row">
+	<div class="col-2"></div>
+	<div class="col-8">
+		<h2 class="text-white">Shopping Cart</h2>
+
+		@if (Model != null && Model.Count > 0)
+		{
+			<table class="table table-light">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Title</th>
+						<th>Quantity</th>
+						<th>Price</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model)
+					{
+						proc = proc + (item.Book.Price * item.Quantity);
+						<tr>
+							<td>
+								<img width="50" height="60" src="~/img/@item.Book.ImagePath" alt="Card image cap">
+
+							</td>
+							<td>
+								@if (item.Book != null)
+								{
+									@item.Book.Title
+								}
+								else
+								{
+									<text>Book Title Not Available</text>
+								}
+							</td>
+							<td>
+								<form asp-controller="Cart" asp-action="UpdateItem" method="post">
+									<input type="hidden" name="itemId" value="@item.Id" class="w-25" />
+									<div class="row">
+										<div class="col-5"><input type="number" name="quantity" value="@item.Quantity" class="form-control w-100" /></div>
+										<div class="col-3"><button type="submit" class="btn btn-info">Update</button></div>
+									</div>
+								</form>
+							</td>
+							<td>
+								$@item.Book.Price
+							</td>
+							<td>
+								<form asp-controller="Cart" asp-action="RemoveItem" method="post">
+									<input type="hidden" name="itemId" value="@item.Id" />
+									<button type="submit" class="btn btn-danger">Remove</button>
+								</form>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+			<h3 class="text-white">Total Amount: $@proc.ToString("###,###.00")</h3>
+			<div class="row">
+				@* <div class="col-3">
+					<select name="payment_method" id="payment_method">
+						<option value="">-Select Payment Method-</option>
+
+
+						<option value="Net Banking">Net Banking</option>
+						<option value="Debit Card">Debit Card</option>
+						<option value="Credit Card">Credit Card</option>
+
+						<option value="GooglePay">GooglePay</option>
+
+					</select>
+				</div> *@
+				<div class="col-3 mb-5">
+					<a class="btn btn-primary form-control" href="https://paypal.me/hristokafedarov1" target="_blank">Pay Now</a>
+				</div>
+			</div>
+		}
+		else
+		{
+			<p>Your cart is empty.</p>
+		}
+	</div>
+</div>

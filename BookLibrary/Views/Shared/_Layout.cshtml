@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        .navbar {
+            margin: 0 auto;
+        }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Book Shop</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/BookLibrary.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/mainstyle.css" asp-append-version="true">
+
+	<link href="~/plugins/bootstrap/bootstrap.min.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/plugins/bootstrap/bootstrap-slider.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/plugins/slick/slick.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/plugins/slick/slick-theme.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/plugins/jquery-nice-select/css/nice-select.css" rel="stylesheet" asp-append-version="true">
+
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet"> 
+
+
+</head>
+<body style="background-color: #0b5394">
+<input type="hidden" id="isAuthenticated" value="@User.Identity.IsAuthenticated.ToString().ToLower()" />
+
+
+<header >
+	<div class = "container">
+		<div class="row">
+            <div class="col-1"></div>
+			<div class="col-11">
+				<nav class="navbar navbar-expand-lg navbar-light navigation">
+                        <div class="container">
+					<a class="navbar-brand" asp-controller="Home" asp-action="Index">
+						 <h1 id="toplogo" class="text-white">Book Shop</h1>
+					</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+                        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+						<ul class="navbar-nav ml-auto main-nav ">
+							<li class="nav-item active">
+								<a class="nav-link text-white" asp-controller="Home" asp-action="Index">Home</a>
+							</li>
+								<li class="nav-item active">
+									<a class="nav-link text-white" asp-controller="Catalog" asp-action="All">Catalog</a>
+								</li>
+								<li class="nav-item active">
+									<a class="nav-link text-white" asp-controller="Home" asp-action="aboutus">About Us</a>
+								</li>
+								<li class="nav-item active">
+									<a class="nav-link text-white" asp-controller="Home" asp-action="contactus">Contact Us</a>
+								</li>
+                                   
+                       
+
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li class="nav-item">
+                                        <a id="manage" class="nav-link text-white" title="Manage">Hello @User.Identity.Name!</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                            <button id="logout" type="submit" class="nav-link btn btn-link text-white">Logout</button>
+                                        </form>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                                    </li>
+                                }
+                                <li class="nav-item">
+                                    <a class=" btn btn-outline-success text-white " id="cart" asp-action="cart" asp-controller="Cart">CART</a>
+                                </li>
+
+						</ul>
+				
+					</div>
+                    </div>
+				</nav>
+			</div>
+		</div>
+	</div>
+
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+
+						<div class="content-block">
+							<h4 style="font-family: Josefin Sans, sans-serif" class="text-center text-white"> Search Our Catalog for the Best New and Used Books</h4>
+
+
+
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</section>
+		
+</header>
+<main>
+    <section>
+            @RenderBody()
+    </section>
+</main>
+
+    <footer class="footer section section-sm">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-7 offset-md-1 offset-lg-0 mb-4 mb-lg-0">
+                    <div class="block about">
+                        <h2 id="botlogo">Book Shop</h2>
+                        <p class="alt-color">
+                            <h8>ABC BOOK SHOP</h8><br />
+                            <h9>Via Dottor Pasquale Castigliego 60, 25030 Lograto BS</h9> <br />
+                            <h10>E-Mail: ikafedarov@gmail.com</h10><br />
+                            <h10>Facebook: Hristo Kafedarov</h10><br />
+                            <h10>Tel: +39 388 119 1512</h10>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 offset-lg-1 col-md-3 col-6 mb-4 mb-lg-0">
+                    <div class="block">
+                        <h4>Discover</h4>
+                        <ul>
+                            <li><a href="" id="pd">Upcoming Books</a></li>
+                            <li><a href="" id="pd">Popular Books</a></li>
+                            <li><a href="" id="pd">Recently Added</a></li>
+                            <li><a href="" id="pd">Authors</a></li>
+                            <li><a href="" id="pd">Publishers</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 offset-md-1 offset-lg-0 col-6 mb-4 mb-md-0">
+                    <div class="block">
+                        <h4>Help</h4>
+                        <ul>
+                            <li><a href="" id="pd">Report a Problem</a></li>
+                            <li><a href="" id="pd">Suggest Edits</a></li>
+                            <li><a href="" id="pd">Directory</a></li>
+                            <li><a href="" id="pd">Search Books</a></li>
+                            <li><a href="" id="pd">Terms & Conditions</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <footer class="footer-bottom">
+        <div class="col-lg-10">
+            <ul class="social-media-icons text-center text-lg-right">
+                <li><a class="fa fa-facebook" href="" id="boticons"></a></li>
+                <li><a class="fa fa-twitter" href=""></a></li>
+                <li><a class="fa fa-pinterest-p" href=""></a></li>
+                <li><a class="fa fa-github-alt" href=""></a></li>
+            </ul>
+        </div>
+
+
+        <div class="scroll-top-to">
+            <i class="fa fa-angle-up"></i>
+        </div>
+    </footer>
+	
+    <script src="~/lib/jquery/dist/jquery.min.js" ></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+	<script src="~/plugins/jquery/jquery.min.js"></script>
+    <script src="~/plugins/bootstrap/popper.min.js"></script>
+	<script src="~/plugins/bootstrap/bootstrap.min.js"></script>
+	<script src="~/plugins/bootstrap/bootstrap-slider.js"></script>
+	<script src="~/plugins/tether/js/tether.min.js"></script>
+	<script src="~/plugins/raty/jquery.raty-fa.js"></script>
+	<script src="~/plugins/slick/slick.min.js"></script>
+	<script src="~/plugins/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+
+	<script src="~/js/script.js"></script>
+
+	<script>
+
+    document.getElementById('cartButton').addEventListener('click', function () {
+        var isAuthenticated = document.getElementById('isAuthenticated').value === 'true';
+
+        if (!isAuthenticated) {
+            alert('Please log in to add items to the cart.');
+        }
+    });
+	</script>
+
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+

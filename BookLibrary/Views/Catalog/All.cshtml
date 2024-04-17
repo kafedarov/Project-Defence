@@ -1,0 +1,150 @@
+﻿@model IEnumerable<Book>
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<br />
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-7">
+            @if (User.IsInRole("admin"))
+                    {
+        <a class="btn btn-primary w-25" asp-controller="Catalog" asp-action="Create">Create</a>
+                    }
+    </div>
+    <div class="col-1">
+<form asp-action="All" method="get">   
+ <div class="container">
+     <div class="row">
+           @*  <div class="col-sm-10">
+                <input class="form-control mr-sm-2" type="text" name="userSearch" placeholder="Search Books">
+            </div> *@
+            <div class= "col-3">
+                <div class="form-group">
+                    <select class="form-control" onchange="this.form.submit()" name="genreName" asp-items="@ViewBag.genreList" >
+                    <option selected="true">Select Genre</option></select>
+                </div> 
+            </div>
+     </div>
+</div> 
+</form>
+</div>
+</div>
+
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+            <br />
+        <br />
+        <table class="table table-hover bg-light table-striped">
+    <tr>
+        <th> 
+        </th>
+        <th>
+            @Html.DisplayNameFor(x => x.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(x => x.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(x => x.Publisher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(x => x.Genre)
+        </th>
+                <th>
+                   
+                </th>
+                    @if (User.IsInRole("admin"))
+                    {
+                <th>
+
+                </th>
+                <th>
+
+                </th>
+                    }
+                <th>
+
+                </th>
+    </tr>
+    @foreach(Book b in Model){
+        <tr id="BookList">
+            <td>
+                <img src="~/img/@b.ImagePath" alt="book image" width="110" height="180">
+            </td>
+            <td>
+                @b.Title
+            </td>
+            <td>
+                @b.Author
+            </td>
+            <td>
+                @b.Publisher
+            </td>
+            <td>
+                @b.Genre.Name
+            </td>
+            <td>
+                <a asp-controller="Catalog" asp-action="Details" asp-route-id="@b.Id">Details</a>
+            </td>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <td>
+                            <a asp-controller="Catalog" asp-action="Delete" asp-route-id="@b.Id">Delete</a>
+                        </td>
+                        <td>
+                            <a asp-controller="Catalog" asp-action="Edit" asp-route-id="@b.Id">Edit</a>
+            </td>
+            }
+
+            <td>
+                <form method="post" asp-controller="Cart" asp-action="AddCartItem">
+                <input type="hidden" id="isAuthenticated" value="@User.Identity.IsAuthenticated.ToString().ToLower()" />
+                <input type="hidden" name="id" value="@b.Id" /> 
+                <input type="hidden" name="quantity" value="1" /> 
+                <button type="submit" id="cartButton2" class="btn btn-primary">Add to Cart</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+</div>
+</div>
+<script>
+    // JavaScript code to handle adding books to the cart
+    $(document).ready(function() {
+        $('.add-to-cart').click(function() {
+            var bookId = $(this).data('book-id');
+            
+            $.ajax({
+                type: 'POST',
+                url: '/Cart/AddCartItem', 
+                data: { id: bookId },
+                success: function(response) {
+                    alert('Book added to cart!');
+                },
+                error: function(error) {
+                    console.error('Error adding book to cart:', error);
+                }
+            });
+        });
+    });
+
+</script>
+
+<script>
+
+    document.getElementById('cartButton2').addEventListener('click', function () {
+        var isAuthenticated = document.getElementById('isAuthenticated').value === 'true';
+
+        if (!isAuthenticated) {
+            alert('Please log in to add items to the cart.');
+        }
+    });
+</script>
+
+
