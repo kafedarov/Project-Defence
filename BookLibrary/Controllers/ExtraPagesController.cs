@@ -15,5 +15,10 @@ namespace BookShop.Controllers
 		{
 			return View();
 		}
-	}
+
+        public IActionResult Faqs()
+        {
+            return View();
+        }
+    }
 }
