@@ -18,10 +18,7 @@ namespace BookShop.Controllers
             _bookDb = bookLibrary;
         
         }
-        public IActionResult Aboutus()
-        {
-            return View();  
-        }
+
 		private SelectList GetGenres()
 		{
 			IEnumerable<string> genreNames = _bookDb.Genres.Select(g => g.Name).Distinct();
@@ -49,25 +46,6 @@ namespace BookShop.Controllers
             ViewBag.recentBooks = searchResults.ToList();
 			return View("ViewbyCategoury");
 		}
-
-
-  
-
-        [HttpPost]
-
-        public IActionResult contactusPOST(Contactus model)
-        {
-            _bookDb.Add(model);
-            _bookDb.SaveChanges();
-            ViewBag.status = "Successfully submitted!";
-            Contactus cantact=new Contactus();
-            return View("contact", cantact);  
-        }
-
-        public IActionResult Contactus()
-        {
-            return View("Contact");
-        }
 
 
         //Action for homepage content

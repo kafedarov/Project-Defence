@@ -2,7 +2,7 @@
 
 namespace BookShop.Controllers
 {
-	public class ExtraPagesController : Controller
+	public class ExtraController : Controller
 	{
 		//Action to Coming Soon/Under Construction Page
 		public IActionResult UnderConstruction()
@@ -10,8 +10,12 @@ namespace BookShop.Controllers
 			return View();
 		}
 
+        public IActionResult Aboutus()
+        {
+            return View();
+        }
 
-		public IActionResult Privacy()
+        public IActionResult Privacy()
 		{
 			return View();
 		}
